@@ -10,7 +10,7 @@ class SpalshScreen extends StatefulWidget {
 class _SpalshScreenState extends State<SpalshScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Column(),
     );
   }
