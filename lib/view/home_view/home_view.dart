@@ -12,9 +12,13 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+enum filterItems { ary_news, bbc_news }
+
 class _HomeScreenState extends State<HomeScreen> {
   final format = DateFormat('MMMM dd, yyyy');
+  String name = 'bbc-news';
   NewsViewModel newsViewModel = NewsViewModel();
+  filterItems? selectedItem;
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height * 1;
@@ -37,11 +41,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () {},
+          PopupMenuButton<filterItems>(
+            onSelected: (filterItems items) {
+              if (filterItems.bbc_news.name == items.name) {
+                name = 'bbc-news';
+              }
+              if (filterItems.ary_news.name == items.name) {
+                name = 'ary-news';
+              }
+              setState(() {
+                selectedItem = items;
+              });
+            },
+            initialValue: selectedItem,
             icon: const Icon(
               Icons.more_vert_outlined,
+              color: Colors.black,
             ),
+            itemBuilder: (context) => <PopupMenuEntry<filterItems>>[
+              const PopupMenuItem<filterItems>(
+                value: filterItems.bbc_news,
+                child: Text('BBC News'),
+              ),
+              const PopupMenuItem<filterItems>(
+                value: filterItems.bbc_news,
+                child: Text('Ary News'),
+              ),
+            ],
           ),
         ],
       ),
