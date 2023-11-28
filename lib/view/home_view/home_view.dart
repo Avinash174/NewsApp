@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   child: Container(
                                     height: height * .22,
-                                    padding: EdgeInsets.all(20),
+                                    padding: const EdgeInsets.all(20),
                                     alignment: Alignment.bottomCenter,
                                     child: Column(
                                       mainAxisAlignment:
@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: width * .7,
                                           child: Text(
                                             snapshot
