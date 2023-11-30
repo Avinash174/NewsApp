@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:news_app/model/actegories_news_model.dart';
 import 'package:news_app/view_model/new_view_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,23 +28,24 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(
           'News',
           style: GoogleFonts.poppins(
-            fontSize: 26,
+            fontSize: 25,
             fontWeight: FontWeight.w700,
           ),
         ),
+        centerTitle: true,
         leading: IconButton(
           onPressed: () {
             // Navigator.push(
             //   context,
             //   MaterialPageRoute(
-            //     builder: (_) => const CategoryScreen(),
+            //     builder: (_) => const CategoriesScreen(),
             //   ),
             // );
           },
           icon: Image.asset(
             'assets/icons/category_icon.png',
-            height: 30,
-            width: 30,
+            height: 25,
+            width: 25,
           ),
         ),
         actions: [
@@ -225,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               ),
                                             ],
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -234,98 +234,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                      );
-                    },
-                  );
-                }
-              },
-            ),
-          ),
-          Expanded(
-            child: FutureBuilder<CategoriesNewsModel>(
-              future: newsViewModel.fetchCategoriesNewsChannel('General'),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: SpinKitCircle(
-                      color: Colors.blue,
-                      size: 50,
-                    ),
-                  );
-                } else {
-                  return ListView.builder(
-                    itemCount: snapshot.data!.articles!.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      DateTime dateTime = DateTime.parse(snapshot
-                          .data!.articles![index].publishedAt
-                          .toString());
-                      return Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadiusDirectional.circular(
-                              15.0,
-                            ),
-                            child: CachedNetworkImage(
-                              imageUrl: snapshot
-                                  .data!.articles![index].urlToImage
-                                  .toString(),
-                              fit: BoxFit.cover,
-                              height: height * .18,
-                              width: .3,
-                              placeholder: (context, url) =>
-                                  Container(child: spinKit2),
-                              errorWidget: (context, url, error) => const Icon(
-                                Icons.error_outline_outlined,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: height * .18,
-                              padding: const EdgeInsets.only(left: 15),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    snapshot.data!.articles![index].title
-                                        .toString(),
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.black54,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 15),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          snapshot.data!.articles![index]
-                                              .source!.name
-                                              .toString(),
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.black54,
-                                          ),
-                                        ),
-                                        Text(
-                                          format.format(dateTime),
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.black54,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
                       );
                     },
                   );
