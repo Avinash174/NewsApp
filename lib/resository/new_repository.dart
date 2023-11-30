@@ -21,4 +21,19 @@ class NewRepository {
     }
     throw Exception("Error");
   }
+
+  Future<NewChannelHeadlineModel> fetchNewsCategories(String category) async {
+    String url =
+        "https://newsapi.org/v2/everything?q=${category}&apiKey=605863575875479abbca9bdd2c420208";
+    final response = await http.get(Uri.parse(url));
+    if (kDebugMode) {
+      log(response.body);
+    }
+    if (response.statusCode == 200) {
+      final body = jsonDecode(response.body);
+
+      return NewChannelHeadlineModel.fromJson(body);
+    }
+    throw Exception("Error");
+  }
 }

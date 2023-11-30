@@ -9,4 +9,10 @@ class NewsViewModel {
     final response = await _rep.fetchNewsChannelHeadlineApi(channelName);
     return response;
   }
+
+  Future<NewChannelHeadlineModel> fetchNewsCategories(String category) async {
+    final response = await _rep.fetchNewsCategories(category);
+
+    return response;
+  }
 }
