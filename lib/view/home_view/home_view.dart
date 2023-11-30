@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-enum filterItems { aftenposten, ansa }
+enum filterItems { bbc_news, google_news, ansa }
 
 class _HomeScreenState extends State<HomeScreen> {
   final format = DateFormat('MMMM dd, yyyy');
@@ -54,12 +54,16 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           PopupMenuButton<filterItems>(
             onSelected: (filterItems items) {
-              if (filterItems.aftenposten.name == items.name) {
-                channelName = 'aftenposten';
+              if (filterItems.bbc_news.name == items.name) {
+                channelName = 'bbc-news';
+              }
+              if (filterItems.google_news.name == items.name) {
+                channelName = 'google-news';
               }
               if (filterItems.ansa.name == items.name) {
-                channelName = 'ansa';
+                channelName = 'Ansa';
               }
+
               setState(() {
                 selectedMenu = items;
               });
@@ -71,12 +75,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             itemBuilder: (context) => <PopupMenuEntry<filterItems>>[
               const PopupMenuItem<filterItems>(
-                value: filterItems.aftenposten,
-                child: Text('Aftenposten'),
+                value: filterItems.bbc_news,
+                child: Text('BBC News'),
+              ),
+              const PopupMenuItem<filterItems>(
+                value: filterItems.google_news,
+                child: Text('Google News'),
               ),
               const PopupMenuItem<filterItems>(
                 value: filterItems.ansa,
-                child: Text('ANSA.it'),
+                child: Text('Ansa'),
               ),
             ],
           ),
