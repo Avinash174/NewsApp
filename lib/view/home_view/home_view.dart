@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/model/new_channel_headline_model.dart';
 import 'package:news_app/view/categories_screen.dart';
+import 'package:news_app/view/news_details_screen.dart';
 import 'package:news_app/view_model/new_view_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -107,31 +108,31 @@ class _HomeScreenState extends State<HomeScreen> {
                           .toString());
                       return InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (_) => NewsDetailScreen(
-                          //       newsTitle: snapshot.data!.articles![index].title
-                          //           .toString(),
-                          //       author: snapshot.data!.articles![index].author
-                          //           .toString(),
-                          //       content: snapshot.data!.articles![index].content
-                          //           .toString(),
-                          //       description: snapshot
-                          //           .data!.articles![index].description
-                          //           .toString(),
-                          //       newsImg: snapshot
-                          //           .data!.articles![index].urlToImage
-                          //           .toString(),
-                          //       source: snapshot
-                          //           .data!.articles![index].source!.name
-                          //           .toString(),
-                          //       newDate: snapshot
-                          //           .data!.articles![index].publishedAt
-                          //           .toString(),
-                          //     ),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => NewsDetailsScreen(
+                                newsTitle: snapshot.data!.articles![index].title
+                                    .toString(),
+                                author: snapshot.data!.articles![index].author
+                                    .toString(),
+                                content: snapshot.data!.articles![index].content
+                                    .toString(),
+                                desc: snapshot
+                                    .data!.articles![index].description
+                                    .toString(),
+                                newsImg: snapshot
+                                    .data!.articles![index].urlToImage
+                                    .toString(),
+                                sources: snapshot
+                                    .data!.articles![index].source!.name
+                                    .toString(),
+                                newsDate: snapshot
+                                    .data!.articles![index].publishedAt
+                                    .toString(),
+                              ),
+                            ),
+                          );
                         },
                         child: SizedBox(
                           child: Stack(
