@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:news_app/model/new_channel_headline_model.dart';
 import 'package:news_app/view/categories_screen.dart';
 import 'package:news_app/view_model/new_view_model.dart';
 
@@ -17,7 +18,7 @@ enum filterItems { aftenposten, ansa }
 
 class _HomeScreenState extends State<HomeScreen> {
   final format = DateFormat('MMMM dd, yyyy');
-  String name = 'aftenposten';
+  String channelName = 'aftenposten';
   NewsViewModel newsViewModel = NewsViewModel();
   filterItems? selectedMenu;
   @override
@@ -53,10 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
           PopupMenuButton<filterItems>(
             onSelected: (filterItems items) {
               if (filterItems.aftenposten.name == items.name) {
-                name = 'aftenposten';
+                channelName = 'aftenposten';
               }
               if (filterItems.ansa.name == items.name) {
-                name = 'ansa';
+                channelName = 'ansa';
               }
               setState(() {
                 selectedMenu = items;
@@ -85,8 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: height * .55,
             width: width,
-            child: FutureBuilder(
-              future: newsViewModel.fetchNewsChannelHeadlineApi('aftenposten'),
+            child: FutureBuilder<NewChannelHeadlineModel>(
+              future: newsViewModel.fetchNewsChannelHeadlineApi(channelName),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
