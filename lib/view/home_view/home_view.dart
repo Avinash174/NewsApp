@@ -243,6 +243,107 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: FutureBuilder(
+              future: newsViewModel.fetchNewsCategories('General'),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: SpinKitCircle(
+                      color: Colors.blue,
+                      size: 50,
+                    ),
+                  );
+                } else {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.articles!.length,
+                    itemBuilder: (context, index) {
+                      DateTime dateTime = DateTime.parse(snapshot
+                          .data!.articles![index].publishedAt
+                          .toString());
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadiusDirectional.circular(
+                                15.0,
+                              ),
+                              child: CachedNetworkImage(
+                                imageUrl: snapshot
+                                    .data!.articles![index].urlToImage
+                                    .toString(),
+                                fit: BoxFit.cover,
+                                height: height * .18,
+                                width: width * .3,
+                                placeholder: (context, url) =>
+                                    Container(child: spinKit2),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(
+                                  Icons.error_outline_outlined,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                padding: const EdgeInsets.only(left: 15),
+                                height: height * .18,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      snapshot.data!.articles![index].title
+                                          .toString(),
+                                      maxLines: 3,
+                                      textAlign: TextAlign.justify,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 13,
+                                        color: Colors.black54,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          snapshot.data!.articles![index]
+                                              .source!.name
+                                              .toString(),
+                                          maxLines: 3,
+                                          textAlign: TextAlign.justify,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 10,
+                                            color: Colors.blue,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Text(
+                                          format.format(dateTime),
+                                          maxLines: 3,
+                                          textAlign: TextAlign.justify,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                }
+              },
+            ),
+          ),
         ],
       ),
     );

@@ -134,7 +134,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                           fontWeight: FontWeight.w700,
                                         ),
                                       ),
-                                      Spacer(),
+                                      const Spacer(),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -148,7 +148,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                             style: GoogleFonts.poppins(
                                               fontSize: 10,
                                               color: Colors.blue,
-                                              fontWeight: FontWeight.w700,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                           Text(
@@ -157,8 +157,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                             textAlign: TextAlign.justify,
                                             style: GoogleFonts.poppins(
                                               fontSize: 10,
-                                              color: Colors.blue,
-                                              fontWeight: FontWeight.w700,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                           ),
                                         ],
