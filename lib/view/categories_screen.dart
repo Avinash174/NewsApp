@@ -151,7 +151,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                 ),
                                 Expanded(
                                   child: Container(
-                                    padding: const EdgeInsets.only(left: 15),
+                                    padding: const EdgeInsets.only(left: 13),
                                     height: height * .18,
                                     child: Column(
                                       children: [
@@ -175,20 +175,18 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                               snapshot.data!.articles![index]
                                                   .source!.name
                                                   .toString(),
-                                              maxLines: 3,
-                                              textAlign: TextAlign.justify,
+                                              overflow: TextOverflow.ellipsis,
                                               style: GoogleFonts.poppins(
-                                                fontSize: 10,
+                                                fontSize: 9,
                                                 color: Colors.blue,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
                                             Text(
                                               format.format(dateTime),
-                                              maxLines: 3,
-                                              textAlign: TextAlign.justify,
+                                              overflow: TextOverflow.ellipsis,
                                               style: GoogleFonts.poppins(
-                                                fontSize: 10,
+                                                fontSize: 8,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ),
