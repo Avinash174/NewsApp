@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:news_app/view/categories_screen.dart';
 import 'package:news_app/view_model/new_view_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -35,12 +36,12 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (_) => const CategoriesScreen(),
-            //   ),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const CategoriesScreen(),
+              ),
+            );
           },
           icon: Image.asset(
             'assets/icons/category_icon.png',
