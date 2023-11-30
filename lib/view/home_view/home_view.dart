@@ -12,11 +12,11 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-enum filterItems { aftenposte, ansa }
+enum filterItems { aftenposten, ansa }
 
 class _HomeScreenState extends State<HomeScreen> {
   final format = DateFormat('MMMM dd, yyyy');
-  String name = 'ansa';
+  String name = 'aftenposten';
   NewsViewModel newsViewModel = NewsViewModel();
   filterItems? selectedMenu;
   @override
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           PopupMenuButton<filterItems>(
             onSelected: (filterItems items) {
-              if (filterItems.aftenposte.name == items.name) {
+              if (filterItems.aftenposten.name == items.name) {
                 name = 'aftenposten';
               }
               if (filterItems.ansa.name == items.name) {
@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             itemBuilder: (context) => <PopupMenuEntry<filterItems>>[
               const PopupMenuItem<filterItems>(
-                value: filterItems.aftenposte,
+                value: filterItems.aftenposten,
                 child: Text('Aftenposten'),
               ),
               const PopupMenuItem<filterItems>(
