@@ -119,12 +119,50 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                               ),
                               Expanded(
                                 child: Container(
-                                  padding: EdgeInsets.only(left: 15),
+                                  padding: const EdgeInsets.only(left: 15),
                                   height: height * .18,
                                   child: Column(
                                     children: [
-                                      Text(snapshot.data!.articles![index].title
-                                          .toString())
+                                      Text(
+                                        snapshot.data!.articles![index].title
+                                            .toString(),
+                                        maxLines: 3,
+                                        textAlign: TextAlign.justify,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 13,
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            snapshot.data!.articles![index]
+                                                .source!.name
+                                                .toString(),
+                                            maxLines: 3,
+                                            textAlign: TextAlign.justify,
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 10,
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
+                                          Text(
+                                            format.format(dateTime),
+                                            maxLines: 3,
+                                            textAlign: TextAlign.justify,
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 10,
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
+                                        ],
+                                      )
                                     ],
                                   ),
                                 ),
