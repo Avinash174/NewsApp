@@ -19,7 +19,7 @@ enum filterItems { bbc_news, google_news, ansa }
 
 class _HomeScreenState extends State<HomeScreen> {
   final format = DateFormat('MMMM dd, yyyy');
-  String channelName = 'aftenposten';
+  String channelName = 'the-times-of-india';
   NewsViewModel newsViewModel = NewsViewModel();
   filterItems? selectedMenu;
   @override
