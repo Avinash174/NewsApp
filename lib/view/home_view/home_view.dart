@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-enum filterItems { bbc_news, google_news, ansa }
+enum filterItems { bbc_news, time, cnn }
 
 class _HomeScreenState extends State<HomeScreen> {
   final format = DateFormat('MMMM dd, yyyy');
@@ -57,11 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
               if (filterItems.bbc_news.name == items.name) {
                 channelName = 'bbc-news';
               }
-              if (filterItems.google_news.name == items.name) {
-                channelName = 'google-news';
+
+              if (filterItems.time.name == items.name) {
+                channelName = 'Time';
               }
-              if (filterItems.ansa.name == items.name) {
-                channelName = 'Ansa';
+              if (filterItems.cnn.name == items.name) {
+                channelName = 'CNN';
               }
 
               setState(() {
@@ -79,12 +80,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text('BBC News'),
               ),
               const PopupMenuItem<filterItems>(
-                value: filterItems.google_news,
-                child: Text('Google News'),
+                value: filterItems.time,
+                child: Text('Time'),
               ),
               const PopupMenuItem<filterItems>(
-                value: filterItems.ansa,
-                child: Text('Ansa'),
+                value: filterItems.cnn,
+                child: Text('CNN'),
               ),
             ],
           ),
