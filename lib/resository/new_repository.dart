@@ -16,7 +16,7 @@ class NewRepository {
     }
     if (response.statusCode == 200) {
       final body = jsonDecode(response.body);
-
+ 
       return NewChannelHeadlineModel.fromJson(body);
     }
     throw Exception("Error");
